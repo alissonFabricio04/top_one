@@ -1,11 +1,15 @@
 import express, { Request, Response } from "express";
+import cors from 'cors';
 import { schedule } from "node-cron";
 import { myRequest } from ".";
 import { prisma } from "./prisma";
+
+
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
+app.use(cors({ origin: "http://localhost:5173" }));
 
 app.get("/list/today", async (req: Request, res: Response) => {
   const now = new Date()
