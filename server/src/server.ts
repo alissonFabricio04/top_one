@@ -28,7 +28,7 @@ app.get("/list/today", async (req: Request, res: Response) => {
   return res.json(atividades)
 })
 
-schedule("0 18 14 * * *", () => {
+schedule("0 49 14 * * *", () => {
   myRequest().then((e) => console.log("terminou"));
 })
 
