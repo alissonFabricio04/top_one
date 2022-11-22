@@ -9,7 +9,7 @@ services:
     ports:
       - "3307:3306"
     volumes:
-      - /www/top/Docker/Volumes/MySql:/var/lib/mysql
+      - /www/top/server/Docker/Volumes/MySql:/var/lib/mysql
     networks:
       - mysql-compose-network
   adminer:

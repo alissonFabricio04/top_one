@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import { schedule } from "node-cron";
-import { myRequest } from "./";
+import { myRequest } from ".";
 import { prisma } from "./prisma";
 const app = express();
 
