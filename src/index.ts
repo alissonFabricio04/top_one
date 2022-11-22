@@ -8,7 +8,7 @@ function sleep(ms: number) {
 }
 
 let atividades: { idConfiguration: number, activityDate: string }[] = [];
-async function myRequest() {
+export async function myRequest() {
   try {
     const response = await axios.get("https://evo-integracao.w12app.com.br/api/v1/activities/schedule?take=100&onlyAvailables=false", {
       auth: { username: `${process.env.EVO_TOP_USERNAME}`, password: `${process.env.EVO_TOP_PASSWORD}` }
@@ -59,4 +59,4 @@ async function myRequest() {
   }
 }
 
-myRequest().then((e) => console.log("terminou"));
+// myRequest().then((e) => console.log("terminou"));

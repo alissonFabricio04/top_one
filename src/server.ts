@@ -1,5 +1,6 @@
 import express, { Request, Response } from "express";
 import { schedule } from "node-cron";
+import { myRequest } from "./";
 import { prisma } from "./prisma";
 const app = express();
 
@@ -20,13 +21,11 @@ app.get("/list/today", async (req: Request, res: Response) => {
     }
   })
 
-  // const atividades = await prisma.atividade.count()
-
   return res.json(atividades)
 })
 
-schedule("0 0 5 * * *", () => {
-  console.log("executou a cron job")
+schedule("0 47 11 * * *", () => {
+  myRequest().then((e) => console.log("terminou"));
 })
 
 const PORT = 8081;
