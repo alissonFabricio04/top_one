@@ -24,11 +24,11 @@ app.get("/list/today", async (req: Request, res: Response) => {
   return res.json(atividades)
 })
 
-schedule("0 47 11 * * *", () => {
+schedule("0 18 14 * * *", () => {
   myRequest().then((e) => console.log("terminou"));
 })
 
-const PORT = 8081;
+const PORT = 8083;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`)
 })
