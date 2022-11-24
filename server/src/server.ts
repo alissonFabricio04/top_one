@@ -28,11 +28,12 @@ app.get("/list/today", async (req: Request, res: Response) => {
   return res.json(atividades)
 })
 
-schedule("0 49 14 * * *", () => {
+schedule("0 50 11 * * *", async () => {
+  await prisma.atividade.deleteMany({});
   myRequest().then((e) => console.log("terminou"));
 })
 
-const PORT = 8083;
+const PORT = 8081;
 app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`)
 })

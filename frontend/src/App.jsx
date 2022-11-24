@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Toast, ToastHeader, ToastBody } from "reactstrap";
+import { verifyHour } from "./util/verifyHour";
+import { verifyLocal } from "./util/verifyLocal";
 import axios from "axios";
-// import { FcClock, FcBusinessman, FcConferenceCall, FcServices, FcCalendar } from "react-icons/fc";
+
 import Navegação from "./components/Navigation";
 
-export const API_URL = "http://localhost:8083";
+export const API_URL = "http://localhost:8081";
 
 function App() {
   const [atividades, setAtividades] = useState([])
@@ -15,30 +17,25 @@ function App() {
       .catch(e => console.log(e))
   }, [])
 
-  const verifyHour = (hour) => {
-    const date = new Date().toLocaleTimeString('pt-PT', { hour12: false })
-    return date <= hour ? true : false
-  };
-
-  return(
+  return (
     <div>
       <Navegação />
       <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
-          {
-            atividades.map(atividade => {
-              return verifyHour(atividade.startTime) ?
-                (
-                  <Toast className="mt-6 m-4" id={atividade.idActivitySession}>
-                    <ToastHeader>{atividade.area} {atividade.startTime} - {atividade.endTime}</ToastHeader>
-                    <ToastBody>
-                      <h4 style={{ fontSize: "1rem" }}>{atividade.name}</h4>
-                      <p>{atividade.client ? atividade.client : "Cliente não cadastrado"}</p>
-                      <p>{atividade.instructor}</p>
-                    </ToastBody>
-                  </Toast>
-                ) : null
-            })
-          }
+        {
+          atividades.map(atividade => {
+            return verifyHour(atividade.startTime) ?
+              (
+                <Toast className="mt-5 ms-5 bg-" id={atividade.idActivitySession}>
+                  {verifyLocal(atividade.area, atividade.startTime, atividade.endTime)}
+                  <ToastBody>
+                    <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Atividade: {atividade.name}</p>
+                    <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Cliente: {atividade.client ? atividade.client : "Cliente não cadastrado"}</p>
+                    <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Instrutor: {atividade.instructor}</p>
+                  </ToastBody>
+                </Toast>
+              ) : null
+          })
+        }
       </div>
     </div>
   )
