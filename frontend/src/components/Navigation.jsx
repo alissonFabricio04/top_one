@@ -6,8 +6,8 @@ import logo from "./img/logo.png"
 function Navegação() {
   return (
     <div>
-      <nav class="navbar navbar-expand-lg navbar-dark" style={{background: "#70c232"}}>
-        <img src={logo} alt="" width={"70"} />
+      <nav class="navbar navbar-expand-lg navbar-dark mb-5" style={{background: "#8B008B"}}>
+        <img src={logo} alt="" width={"60"} />
       </nav>
     </div>
   );

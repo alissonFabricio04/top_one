@@ -1,41 +1,92 @@
 import React, { useEffect, useState } from "react";
 import { Toast, ToastHeader, ToastBody } from "reactstrap";
-import { verifyHour } from "./util/verifyHour";
 import { verifyLocal } from "./util/verifyLocal";
 import axios from "axios";
-
 import Navegação from "./components/Navigation";
+import { verifyHour } from "./util/verifyHour";
 
 export const API_URL = "http://localhost:8081";
 
 function App() {
-  const [atividades, setAtividades] = useState([])
+  const [backhand, setBackhand] = useState([])
+  const [smash, setSmash] = useState([])
+  const [forehand, setForehand] = useState([])
 
   useEffect(() => {
     axios.get(`${API_URL}/list/today`)
-      .then(response => setAtividades(response.data))
+      .then(response => {
+        setBackhand(response.data.backhand)
+        setSmash(response.data.smash)
+        setForehand(response.data.forehand)
+        console.log(response.data)
+      })
       .catch(e => console.log(e))
   }, [])
 
   return (
-    <div>
-      <Navegação />
-      <div style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "center", flexWrap: "wrap" }}>
-        {
-          atividades.map(atividade => {
-            return verifyHour(atividade.startTime) ?
-              (
-                <Toast className="mt-5 ms-5 bg-" id={atividade.idActivitySession}>
-                  {verifyLocal(atividade.area, atividade.startTime, atividade.endTime)}
-                  <ToastBody>
-                    <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Atividade: {atividade.name}</p>
-                    <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Cliente: {atividade.client ? atividade.client : "Cliente não cadastrado"}</p>
-                    <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Instrutor: {atividade.instructor}</p>
-                  </ToastBody>
-                </Toast>
-              ) : null
-          })
-        }
+    <div style={{ background: "#DCDCDC" }}>
+      <Navegação />      
+      <div style={{ display: "flex", marginLeft: "3rem" }}>        
+        <div>
+        <hr />       
+          {
+            backhand.map(atividade => {
+              return (
+                <div>
+                  {verifyHour(atividade.date) ?
+                    <Toast className="mt-5 mb-2 ms-5 me-3" id={atividade.idActivitySession}>
+                      {verifyLocal(atividade.area, atividade.startTime, atividade.endTime)}
+                      <ToastBody>
+                        <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Atividade: {atividade.name}</p>
+                        <p style={{ fontSize: "1rem",  fontStyle: "italic"}}>Cliente: {atividade.client ? atividade.client : "Cliente não cadastrado"}</p>
+                        <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Instrutor: {atividade.instructor}</p>
+                      </ToastBody>                                
+                    </Toast> : null}                                                       
+                </div>
+              )
+            })
+          }         
+        </div>        
+        <div>
+        <hr />            
+          {
+            smash.map(atividade => {
+              return (
+                <div>
+                  {verifyHour(atividade.date) ?
+                    <Toast className="mt-5 mb-2 ms-5 me-3 " id={atividade.idActivitySession}>
+                      {verifyLocal(atividade.area, atividade.startTime, atividade.endTime)}
+                      <ToastBody>
+                        <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Atividade: {atividade.name}</p>
+                        <p style={{ fontSize: "1rem", fontStyle: "italic"}}>Cliente: {atividade.client ? atividade.client : "Cliente não cadastrado"}</p>
+                        <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Instrutor: {atividade.instructor}</p>
+                      </ToastBody>
+                    </Toast> : null}                    
+                </div>
+              )
+            })
+          }
+        </div>
+        <div>
+        <hr />        
+          {
+            forehand.map(atividade => {
+              return (
+                <div>
+                  {verifyHour(atividade.date) ?
+                    <Toast className="mt-5 mb-2 ms-5 me-3 " id={atividade.idActivitySession}>
+                      {verifyLocal(atividade.area, atividade.startTime, atividade.endTime)}
+                      <ToastBody>
+                        <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Atividade: {atividade.name}</p>
+                        <p style={{ fontSize: "1rem", fontStyle: "italic"}}>Cliente: {atividade.client ? atividade.client : "Cliente não cadastrado"}</p>
+                        <p style={{ fontSize: "1rem", fontStyle: "italic" }}>Instrutor: {atividade.instructor}</p>
+                      </ToastBody>
+                    </Toast> : null}
+                </div>
+              )
+            })
+          }
+        </div>
       </div>
     </div>
   )
