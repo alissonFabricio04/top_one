@@ -55,7 +55,7 @@ app.get("/list/today", async (req: Request, res: Response) => {
 
 
     const dateOld = item.endTime
-    item.date = setHours(new Date(item.date), item.endTime);
+    item.date = setHours(new Date(item.date), item.startTime);
 
     return { ...item, date: item.date }
   })
@@ -73,7 +73,7 @@ app.get("/list/today", async (req: Request, res: Response) => {
   return res.json(quadras)
 })
 
-schedule("0 31 09 * * *", async () => {
+schedule("0 05 15 * * *", async () => {
   await prisma.atividade.deleteMany({});
   myRequest().then((e) => console.log("terminou"));
 })

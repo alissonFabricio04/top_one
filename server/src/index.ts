@@ -25,7 +25,13 @@ export async function myRequest() {
     axios.get(`https://evo-integracao.w12app.com.br/api/v1/activities/schedule/detail?idConfiguration=${atividades[i].idConfiguration}&activityDate=${atividades[i].activityDate}`, {
       auth: { username: `${process.env.EVO_TOP_USERNAME}`, password: `${process.env.EVO_TOP_PASSWORD}` }
     })
-    .then(async (response) => {     
+    .then(async (response) => {
+      
+      response.data.startTime = response.data.startTime == "12:30 PM" ? "12:30 AM" : response.data.startTime;
+      response.data.endTime = response.data.endTime == "12:30 PM" ? "12:30 AM" : response.data.endTime;
+      response.data.startTime = response.data.startTime == "12:00 PM" ? "12:00 AM" : response.data.startTime;
+      response.data.endTime = response.data.endTime == "12:00 PM" ? "12:00 AM" : response.data.endTime;
+
       await prisma.atividade.create({
         data: {
           idActivitySession: response.data.idActivitySession,

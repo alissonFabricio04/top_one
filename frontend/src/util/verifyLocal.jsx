@@ -3,14 +3,14 @@ import { ToastHeader} from "reactstrap";
 export const verifyLocal = (area,inicio, fim) => {
 
   if (area === "BACKHAND") {
-    return  <ToastHeader className="bg-warning text-body">{area} {inicio} - {fim}</ToastHeader>
+    return  <ToastHeader style={{ background: "#6B8E23" }} className="text-body"><span style={{ color: "white" }}>{area} {inicio} - {fim}</span></ToastHeader>
   }
 
   if (area === "SMASH") {
-    return  <ToastHeader className="bg-success text-body">{area} {inicio} - {fim}</ToastHeader>
+    return  <ToastHeader style={{ background: "#C86800" }} className="text-body"><span style={{ color: "white" }}>{area} {inicio} - {fim}</span></ToastHeader>
   }
 
   if (area === "FOREHAND") {
-    return  <ToastHeader className="bg-info text-body">{area} {inicio} - {fim}</ToastHeader>
+    return  <ToastHeader style={{ background: "#4D2400" }} className="text-body"><span style={{ color: "white" }}>{area} {inicio} - {fim}</span></ToastHeader>
   }
 }
