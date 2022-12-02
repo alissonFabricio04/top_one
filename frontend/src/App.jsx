@@ -35,7 +35,7 @@ function App() {
           {backhand.map(atividade => <Quadras atividade={atividade} />)}
         </div>
         <strong style={{ position: "fixed", top: "10%", left: "48%" }}>SMASH</strong>
-        <div>
+        <div>          
           {smash.map(atividade => <Quadras atividade={atividade} />)}
         </div>
         <strong style={{ position: "fixed", top: "10%", left: "76.9%" }}>FOREHAND</strong>
