@@ -41,6 +41,7 @@ app.get("/list/today", async (req: Request, res: Response) => {
       // console.log(dt)
       // console.log()
       return dt
+      
     }
 
     if (item.area == "BACKHAND") {
