@@ -4,6 +4,9 @@ import { schedule } from "node-cron";
 import { myRequest } from ".";
 import { prisma } from "./prisma";
 import { Atividade } from "@prisma/client";
+import { config } from "dotenv";
+config();
+
 
 
 
@@ -11,7 +14,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: process.env.API_FRONTEND }));
 
 app.get("/list/today", async (req: Request, res: Response) => {
   const now = new Date()
@@ -74,7 +77,7 @@ app.get("/list/today", async (req: Request, res: Response) => {
   return res.json(quadras)
 })
 
-schedule("0 04 08 * * *", async () => {
+schedule("0 22 08 * * *", async () => {
   await prisma.atividade.deleteMany({});
   myRequest().then((e) => console.log("terminou"));
 })
