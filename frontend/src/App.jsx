@@ -6,15 +6,14 @@ import moment from "moment";
 import { verifyHour } from "./util/verifyHour";
 import "./index.css"
 
-
 export const API_URL = "http://localhost:8081";
 
 function App() {
   const [backhand, setBackhand] = useState([])
   const [smash, setSmash] = useState([])
-  const [forehand, setForehand] = useState([])  
+  const [forehand, setForehand] = useState([])
+  const [tennis, setTennis] = useState("backhand")
   const tennis2 = ["backhand", "smash", "forehand"]
-
 
   useEffect(() => {
     axios.get(`${API_URL}/list/today`)
@@ -26,11 +25,18 @@ function App() {
       .catch(e => console.log(e))
   }, [])
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      console.log(tennis)
+      setTennis(tennis2[Math.floor(Math.random() * 3)])
+    }, 10000)
+
+    return () => clearInterval(interval);
+  }, []);
+
   setTimeout(() => {
     window.location.reload()
-  }, 60000);    
-
-  let tennis = "backhand";
+  }, 60000);
 
   // for (let index = 0; index < tennis2.length; index++) {
   //     tennis.push(inde)
@@ -59,11 +65,10 @@ function App() {
   //     }, 1000)
   //   // }) 
   // }
-  
-
 
   return (
-    <div >
+    <div>
+      { verifyAct(tennis) }
       {/* <div style={{ display: "flex", justifyContent: "center", marginRight: "2rem" }}>
         <strong style={{ position: "fixed", top: "10%", left: "16.5%" }}>BACKHAND</strong>
         <div>
@@ -78,10 +83,6 @@ function App() {
           {forehand.map(atividade => <Quadras atividade={atividade} />)}
         </div>
       </div> */}
-
-      {
-        verifyAct(tennis)
-      }
 
       {/* <Quadras atividade={backhand} nome="BACKHAND" corFundo="#6B8E23" /> */}
       {/* <Quadras atividade={smash} nome="SMASH" corFundo="#C86800" />

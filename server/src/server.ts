@@ -7,9 +7,6 @@ import { Atividade } from "@prisma/client";
 import { config } from "dotenv";
 config();
 
-
-
-
 const app = express();
 
 app.use(express.json());
@@ -39,12 +36,8 @@ app.get("/list/today", async (req: Request, res: Response) => {
       let s = /(\d+):(\d+)(.+)/.exec(h);
       dt.setHours(s![3] == " PM" ? 12 + parseInt(s![1], 10) : parseInt(s![1], 10));
       dt.setMinutes(parseInt(s![2], 10));
-      // console.log(s![1], s![2], s![3])
-      // console.log(s![3] == " PM")
-      // console.log(dt)
-      // console.log()
-      return dt
-      
+
+      return dt 
     }
 
     if (item.area == "BACKHAND") {
@@ -55,8 +48,7 @@ app.get("/list/today", async (req: Request, res: Response) => {
     }
     else {
       Forehand.push(item)
-    }    
-
+    }
 
     const dateOld = item.endTime
     item.date = setHours(new Date(item.date), item.startTime);
@@ -69,15 +61,11 @@ app.get("/list/today", async (req: Request, res: Response) => {
     smash: Smash,
     forehand: Forehand
   }
-   
-  
-    
-  
 
   return res.json(quadras)
 })
 
-schedule("0 27 11 * * *", async () => {
+schedule("0 33 19 * * *", async () => {
   await prisma.atividade.deleteMany({});
   myRequest().then((e) => console.log("terminou"));
 })

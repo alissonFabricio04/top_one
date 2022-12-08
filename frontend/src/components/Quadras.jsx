@@ -4,8 +4,6 @@ import { verifyHour } from "../util/verifyHour";
 import moment from "moment";
 // import "../index.css"
 
-
-
 export default function Quadras({ atividade, nome, corFundo }) {
 
     const hora = moment().format('HH:mm');
@@ -24,7 +22,7 @@ export default function Quadras({ atividade, nome, corFundo }) {
         // </div>
 
 
-        <div class="container-fluid" style={{ backgroundColor: `${corFundo}`, color: "#fff" }}>
+        <div class="container-fluid" style={{ backgroundColor: `${corFundo}`, color: "#fff", width: "100%", height: "100%" }}>
             <div class="row">
                 <div class="col">
                     <div class="row">
