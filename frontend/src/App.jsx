@@ -67,7 +67,7 @@ function App() {
   // }
 
   return (
-    <div>
+    <div className="body">
       { verifyAct(tennis) }
       {/* <div style={{ display: "flex", justifyContent: "center", marginRight: "2rem" }}>
         <strong style={{ position: "fixed", top: "10%", left: "16.5%" }}>BACKHAND</strong>
