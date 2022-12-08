@@ -6,14 +6,14 @@ export const verifyHour = (dateISO) => {
   // console.log(dateISO, now.getTime(), dateActivity.getTime(), dateActivity.getTime() >= now.getTime())
 
   if (dateActivity.getTime() >= now.getTime()) {
-    console.log(dateActivity.getTime() >= now.getTime(), dateActivity.getTime(), now.getTime(), dateISO)
+    // console.log(dateActivity.getTime() >= now.getTime(), dateActivity.getTime(), now.getTime(), dateISO)
     return true;
   }
 
-  return false;
+  return false;  
   // const date = new Date().toLocaleTimeString('pt-PT', { hour12: false });
   // date.toString()
-  // if (date >= hour) {
+  // if (date >= hour) { 
   //   return true;
   // } else {
   //   return false;
