@@ -65,7 +65,7 @@ app.get("/list/today", async (req: Request, res: Response) => {
   return res.json(quadras)
 })
 
-schedule("0 33 19 * * *", async () => {
+schedule("0 57 09 * * *", async () => {
   await prisma.atividade.deleteMany({});
   myRequest().then((e) => console.log("terminou"));
 })

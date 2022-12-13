@@ -26,30 +26,39 @@ function App() {
   }, [])
 
   useEffect(() => {
+    let count = 0
     const interval = setInterval(() => {
-      console.log(tennis)
-      setTennis(tennis2[Math.floor(Math.random() * 3)])
-    }, 10000)
+      if (count > 2) {
+        count = 0;
+      }      
+      setTennis(tennis2[count])
+      count++
+    }, 3000)
 
     return () => clearInterval(interval);
   }, []);
+
+  // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     console.log(tennis)
+  //     setTennis(tennis2[Math.floor(Math.random() * 3)])
+  //   }, 3000)
+
+  //   return () => clearInterval(interval);
+  // }, []);
 
   setTimeout(() => {
     window.location.reload()
   }, 60000);
 
-  // for (let index = 0; index < tennis2.length; index++) {
-  //     tennis.push(inde)
-  // }
-
   const verifyAct = (Quadra) => {
     for (let index = 0; index <= 3; index++) {
       if (Quadra === "backhand") {
-        return <Quadras atividade={backhand} nome="BACKHAND" corFundo="#6B8E23" />
+        return <Quadras atividade={backhand} nome="BACKHAND" corFundo="#0076BE" />
       } else if (Quadra === "smash") {
-        return <Quadras atividade={smash} nome="SMASH" corFundo="#C86800" />
+        return <Quadras atividade={smash} nome="SMASH" corFundo="#EA4444" />
       } else if (Quadra === "forehand") {
-        return <Quadras atividade={forehand} nome="FOREHAND" corFundo="#4D2400" />
+        return <Quadras atividade={forehand} nome="FOREHAND" corFundo="#FCE032" />
       }
     }
   }
@@ -68,7 +77,7 @@ function App() {
 
   return (
     <div className="body">
-      { verifyAct(tennis) }
+      {verifyAct(tennis)}
       {/* <div style={{ display: "flex", justifyContent: "center", marginRight: "2rem" }}>
         <strong style={{ position: "fixed", top: "10%", left: "16.5%" }}>BACKHAND</strong>
         <div>
