@@ -26,9 +26,13 @@ function App() {
   }, [])
 
   useEffect(() => {
+    let count = 0
     const interval = setInterval(() => {
-      console.log(tennis)
-      setTennis(tennis2[Math.floor(Math.random() * 3)])
+      if(count > 2) {
+        count = 0
+      }
+      setTennis(tennis2[count])
+      count++
     }, 10000)
 
     return () => clearInterval(interval);
