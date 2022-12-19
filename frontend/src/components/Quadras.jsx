@@ -2,7 +2,7 @@ import { Toast, ToastBody } from "reactstrap";
 import { verifyName } from "../util/verifyName";
 import { verifyHour } from "../util/verifyHour";
 import moment from "moment";
-// import "../index.css"
+import "../index.css"
 
 export default function Quadras({ atividade, nome, corFundo }) {
 
@@ -22,7 +22,7 @@ export default function Quadras({ atividade, nome, corFundo }) {
         // </div>
 
 
-        <div class="container-fluid" style={{ backgroundColor: `${corFundo}`, color: "#fff", width: "100%", height: "100%" }}>
+        <div class="container-fluid" style={{ backgroundColor: `${corFundo}`, color: "#fff", height: "100%" }}>
             <div class="row">
                 <div class="col">
                     <div class="row">
